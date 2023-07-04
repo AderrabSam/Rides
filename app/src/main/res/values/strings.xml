@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Rides</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="size">size</string>
+    <string name="search_vehicle">search</string>
+    <string name="vin">Vin:</string>
+    <string name="makeAndModel">Make and Model:</string>
+    <string name="carType">Car type:</string>
+    <string name="color">Color:</string>
 </resources>

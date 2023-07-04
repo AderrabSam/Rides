@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/vehicleListFragment">
+
+    <fragment
+        android:id="@+id/vehicleListFragment"
+        android:name="com.assignment.rides.vehicleList.VehicleListFragment"
+        android:label="fragment_vehicle_list"
+        tools:layout="@layout/fragment_vehicle_list" >
+        <action
+            android:id="@+id/action_vehicleListFragment_to_vehicleDetailsFragment"
+            app:destination="@id/vehicleDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleDetailsFragment"
+        android:name="com.assignment.rides.vehicleDetails.VehicleDetailsFragment"
+        android:label="fragment_vehicle_details"
+        tools:layout="@layout/fragment_vehicle_details" >
+        <argument
+            android:name="vin"
+            app:argType="string"
+            android:defaultValue="vin" />
+        <argument
+            android:name="makeAndModel"
+            app:argType="string" />
+        <argument
+            android:name="color"
+            app:argType="string" />
+        <argument
+            android:name="carType"
+            app:argType="string" />
+    </fragment>
+
+</navigation>
