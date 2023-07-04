@@ -10,7 +10,7 @@ import com.assignment.rides.model.VehiclesResponse
 
 
 class VehicleListViewAdapter(
-    private val items: List<VehiclesResponse>
+    private val items: MutableList<VehiclesResponse>
 ) :
     RecyclerView.Adapter<VehicleListViewAdapter.ViewHolder>() {
 
@@ -40,11 +40,23 @@ class VehicleListViewAdapter(
                     vin = item.vin,
                     makeAndModel = item.make_and_model,
                     color = item.color,
-                    carType = item.car_type
+                    carType = item.car_type,
+                    kilometrage = item.kilometrage
                 )
             view.findNavController().navigate(action)
         }
 
+
+    }
+
+    fun clear() {
+        items.clear()
+        notifyDataSetChanged()
+    }
+
+    fun addAll(tweetList: List<VehiclesResponse>) {
+        items.addAll(tweetList)
+        notifyDataSetChanged()
 
     }
 

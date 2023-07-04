@@ -1,113 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".vehicleDetails.VehicleDetailsFragment">
+
     <LinearLayout
         android:id="@+id/layoutVin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:orientation="horizontal"
-        android:padding="20dp">
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
             android:layout_marginEnd="10dp"
-            android:text="@string/vin" />
+            android:text="@string/vin"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/vinText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/vin"
             android:textSize="12sp"
-            android:textStyle="normal"
-            android:text="@string/vin" />
+            android:textStyle="normal" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/layoutM"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutVin"
         android:orientation="horizontal"
-        android:padding="20dp">
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutVin">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
             android:layout_marginEnd="10dp"
-            android:text="@string/makeAndModel" />
+            android:text="@string/makeAndModel"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/makeAndModelText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/vin"
             android:textSize="12sp"
-            android:textStyle="normal"
-            android:text="@string/vin" />
+            android:textStyle="normal" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/layoutColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutM"
         android:orientation="horizontal"
-        android:padding="20dp">
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutM">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
             android:layout_marginEnd="10dp"
-            android:text="@string/color" />
+            android:text="@string/color"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/ColorText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/vin"
             android:textSize="12sp"
-            android:textStyle="normal"
-            android:text="@string/vin" />
+            android:textStyle="normal" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/layoutCarType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutColor"
         android:orientation="horizontal"
-        android:padding="20dp">
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutColor">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
             android:layout_marginEnd="10dp"
-            android:text="@string/carType" />
+            android:text="@string/carType"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/carTypeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/vin"
             android:textSize="12sp"
-            android:textStyle="normal"
-            android:text="@string/vin" />
+            android:textStyle="normal" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/carbonEmissionsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/carbon_emissions"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutCarType" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

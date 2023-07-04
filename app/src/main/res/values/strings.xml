@@ -7,4 +7,6 @@
     <string name="makeAndModel">Make and Model:</string>
     <string name="carType">Car type:</string>
     <string name="color">Color:</string>
+    <string name="carbon_emissions">carbon emissions</string>
+    <string name="carbon_emissions_text">Carbon Emissions</string>
 </resources>

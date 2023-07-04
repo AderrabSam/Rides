@@ -9,9 +9,13 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.assignment.rides.LoadingDialog
+import com.assignment.rides.Validator
 import com.assignment.rides.databinding.FragmentVehicleListBinding
 import com.assignment.rides.model.ApiCall
 import com.assignment.rides.model.Repository
+import com.assignment.rides.model.VehiclesResponse
+
 
 
 class VehicleListFragment : Fragment() {
@@ -19,7 +23,9 @@ class VehicleListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var viewModel: VehicleListViewModel
-
+    private lateinit var dialog: LoadingDialog
+    private lateinit var dataList: MutableList<VehiclesResponse>
+    private lateinit var adapter: VehicleListViewAdapter
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,15 +44,32 @@ class VehicleListFragment : Fragment() {
             this,
             VehicleListViewModelFactory(repository)
         )[VehicleListViewModel::class.java]
-
+        dialog = LoadingDialog(requireContext())
         setupObservers()
         binding.buttonVehicle.setOnClickListener {
-            val inputValue = binding.inputSizeVehicle.text
-            viewModel.getVehicle(inputValue.toString().toInt())
+            validInputVehicle()
+
+        }
+
+        binding.container.setOnRefreshListener {
+            viewModel.getNewVehicle(dataList.size)
+        }
+
+    }
+
+    private fun validInputVehicle() {
+        val inputValue = binding.inputSizeVehicle.text.toString().toInt()
+        if (Validator.validInputVehicleValue(inputValue)) {
+            binding.inputLayout.helperText = null
+            closeKeyboard()
+            viewModel.getVehicle(inputValue)
+        } else {
+            binding.inputLayout.helperText = "Value must be between 1 and 100"
             closeKeyboard()
         }
 
     }
+
 
     private fun closeKeyboard() {
         val inputMethodManager =
@@ -60,7 +83,8 @@ class VehicleListFragment : Fragment() {
     private fun setupObservers() {
         viewModel.listVehicles.observe(viewLifecycleOwner) { it ->
             if (it != null) {
-                val adapter = VehicleListViewAdapter(it.sortedBy { it.vin })
+                dataList = it.sortedBy { it.vin }.toMutableList()
+                adapter = VehicleListViewAdapter(dataList)
                 binding.recycleViewList.also {
                     it.layoutManager =
                         LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
@@ -69,6 +93,24 @@ class VehicleListFragment : Fragment() {
                 }
             }
 
+        }
+        viewModel.newListVehicles.observe(viewLifecycleOwner) { it ->
+            if (it != null) {
+                adapter.clear()
+                adapter.addAll(it.sortedBy { it.vin })
+                binding.container.isRefreshing = false
+
+            }
+        }
+        viewModel.showLoading.observe(viewLifecycleOwner) {
+            if (it) {
+                dialog.startLoadingDialog()
+            }
+        }
+        viewModel.hideLoading.observe(viewLifecycleOwner) {
+            if (it) {
+                dialog.dismissDialog()
+            }
         }
     }
 
